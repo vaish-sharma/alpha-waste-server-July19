@@ -8,8 +8,7 @@ const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 
 console.log('Hello');
-const url =
-	'mongodb+srv://admin:gHPOl2iRtv6YmboK@cluster0.iisukc0.mongodb.net/alphaWasteDb?retryWrites=true&w=majority';
+const url = process.env.MONGODB_URL || 'mongodb+srv://admin:gHPOl2iRtv6YmboK@cluster0.iisukc0.mongodb.net/alphaWasteDb?retryWrites=true&w=majority';
 const connect = mongoose.connect(url);
 
 connect.then(

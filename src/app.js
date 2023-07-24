@@ -15,11 +15,6 @@ const productsRouter = require('./products.router');
 const miscRouter = require('./misc.router');
 
 const { rescheduleOrders } = require('./service/cron.job.service.js');
-const multer = require('multer');
-
-// Set up multer storage
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
 
 const app = express();
 var corsOptions = {
@@ -145,7 +140,7 @@ function auth(req, res, next) {
 
 //change this
 
-// app.use(auth);
+app.use(auth);
 app.use('/users', usersRouter);
 app.use('/agent', agentRouter);
 app.use('/orders', ordersRouter);
