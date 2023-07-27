@@ -14,7 +14,7 @@ const agentRouter = require('./agent.router');
 const productsRouter = require('./products.router');
 const miscRouter = require('./misc.router');
 
-const { rescheduleOrders } = require('./service/cron.job.service.js');
+const { rescheduleOrders, initScheduledJobs } = require('./service/cron.job.service.js');
 
 const app = express();
 var corsOptions = {
@@ -66,6 +66,9 @@ app.use(
 	),
 );
 
+//Start cron
+initScheduledJobs();
+
 //Routes
 
 //Log requests
@@ -92,20 +95,10 @@ var sanitiser = function (req, res, next) {
 };
 
 app.use(sanitiser);
-// app.post('/users/:userId/reportIssue', upload.single('file'), function (
-// 	req,
-// 	res,
-// 	next,
-// ) {
-// 	console.log('req', req);
-// 	let file = req.body.file;
-// 	console.log('file', file);
-// });
 
 app.get('/', (req, res, next) => {
 	res.statusCode = 200;
 	//Below line of code is just for testing
-	//req.session.userId = 'userId';
 	res.send('Welcome to the world');
 	// allocateOrders()
 	// 	.then((res) => console.log('res', res))

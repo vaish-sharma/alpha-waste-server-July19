@@ -181,7 +181,7 @@ exports.rescheduleOrders = (fromDay, toDay) => {
 };
 
 exports.initScheduledJobs = () => {
-	const ordersAllocationFn = CronJob.schedule('0 0 0 * * ?', () => {
+	const ordersAllocationFn = CronJob.schedule('0 0 0 * * *', () => {
 		let today = new Date();
 		let yesterday = new Date();
 		yesterday.setDate(today.getDate() - 1);
@@ -193,6 +193,7 @@ exports.initScheduledJobs = () => {
 		console.log('=== ORDER ALLOCATION END ===');
 		// Add your custom logic here
 	});
+
 
 	ordersAllocationFn.start();
 };
