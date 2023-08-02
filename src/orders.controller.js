@@ -118,7 +118,6 @@ function getOrderById(req, res, next) {
 function updateOrderById(req, res, next) {
 	var allowedPaths = [
 		'order_scheduled_date',
-		'order_completed_date',
 		// 'order_amt',
 		'agent',
 		'status',
@@ -129,6 +128,9 @@ function updateOrderById(req, res, next) {
 		if (req.body?.[path]) {
 			console.log('req.body?.[path]', req.body?.[path]);
 			body[path] = req.body?.[path];
+			if (path === 'status') {
+				body['order_completed_date'] = new Date();
+			}
 		}
 	}
 	req.body = body;

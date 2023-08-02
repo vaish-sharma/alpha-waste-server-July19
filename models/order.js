@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var passportLocalMongoose = require('passport-local-mongoose');
+// var passportLocalMongoose = require('passport-local-mongoose');
 var Schema = mongoose.Schema;
 const address = require('./address');
 const { paymentSchema } = require('./payment');
@@ -79,10 +79,13 @@ var orderSchema = new Schema(
 			required: true,
 			default: 'PENDING',
 		},
+		transactionId: {
+			type: String
+		},
 		id: false,
 	},
 	{ toJSON: { getters: true } },
 );
 
-orderSchema.plugin(passportLocalMongoose);
+// orderSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model('Order', orderSchema);

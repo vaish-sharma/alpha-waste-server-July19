@@ -35,6 +35,9 @@ var agentSchema = new Schema({
 		type: Boolean,
 		default: false,
 	},
+	pushToken: {
+		type: String,
+	},
 	isVerified: {
 		type: Boolean,
 		default: false,

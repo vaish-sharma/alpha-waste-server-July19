@@ -58,6 +58,9 @@ var userSchema = new Schema({
 		required: true,
 	},
 	socialAuth: [socialAuthSchema],
+	pushToken: {
+		type: String
+	}
 });
 
 userSchema.pre('save', function (next) {

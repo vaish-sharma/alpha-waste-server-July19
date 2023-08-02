@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-var passportLocalMongoose = require('passport-local-mongoose');
+// var passportLocalMongoose = require('passport-local-mongoose');
 var Schema = mongoose.Schema;
 
 var addressSchema = new Schema({
@@ -45,6 +45,6 @@ var addressSchema = new Schema({
 // 	{ unique: true, partialFilterExpression: { default: true } },
 // );
 
-addressSchema.plugin(passportLocalMongoose);
+// addressSchema.plugin(passportLocalMongoose);
 var Address = mongoose.model('Address', addressSchema);
 module.exports = { Address, addressSchema };

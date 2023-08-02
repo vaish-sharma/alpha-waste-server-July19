@@ -1,5 +1,5 @@
 module.exports.BASE_URL = 'https://udi8pw.sse.codesandbox.io/';
-module.exports.ORDER_LEAD_TIME = 2;
+module.exports.ORDER_LEAD_TIME = 0;
 module.exports.SERVICEABLE_COUNTRIES = ['India'];
 module.exports.SERVICEABLE_CITIES = [
 	{

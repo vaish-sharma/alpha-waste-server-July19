@@ -15,6 +15,7 @@ const productsRouter = require('./products.router');
 const miscRouter = require('./misc.router');
 
 const { rescheduleOrders, initScheduledJobs } = require('./service/cron.job.service.js');
+const { ordersWatch } = require('./watch/orders.watch.js');
 
 const app = express();
 var corsOptions = {
@@ -30,7 +31,8 @@ app.set('views', path.join(__dirname, 'views'));
 const store = new MongoDBStore(
 	{
 		uri:
-			'mongodb+srv://admin:gHPOl2iRtv6YmboK@cluster0.iisukc0.mongodb.net/alphaWasteDb?retryWrites=true&w=majority',
+			process.env.MONGODB_URL || 'mongodb+srv://doadmin:1t95KD3C8Z427hfP@alpha-waste-db-cluster-8db0b235.mongo.ondigitalocean.com/alphaWasteDb?authSource=admin&tls=true',
+		//'mongodb+srv://admin:gHPOl2iRtv6YmboK@cluster0.iisukc0.mongodb.net/alphaWasteDb?retryWrites=true&w=majority',
 		collection: 'sessions',
 	},
 	function (err) {
@@ -68,6 +70,9 @@ app.use(
 
 //Start cron
 initScheduledJobs();
+
+//Start watch
+ordersWatch();
 
 //Routes
 
